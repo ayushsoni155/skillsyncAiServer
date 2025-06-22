@@ -1,0 +1,21 @@
+{
+  "name": "skillsyncai-server",
+  "version": "1.0.0",
+  "description": "skillsyncAI-Ai powered placment prepration platform",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ayush soni",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^1.4.0",
+    "@google/generative-ai": "^0.24.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.15.1"
+  }
+}
