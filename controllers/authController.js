@@ -31,12 +31,12 @@ const loginUser = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false, // Change to true in production with HTTPS
-      sameSite: 'Strict',
+      secure: true,
+      sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000,
-    });
 
-    const message = 'Login successful';
+    });
+      const message = 'Login successful';
 
     res.json({message,user});
   } catch (err) {
