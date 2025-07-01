@@ -80,7 +80,7 @@ const result = async (req, res) => {
     const correctAnswersMap = {};
 
     quiz.questions.forEach((q, index) => {
-      const key = `q${index + 1}`;
+      const key = index + 1;
       const correctAnswer = q.correctAnswer;
       const userAnswer = userAnswers[key];
 
