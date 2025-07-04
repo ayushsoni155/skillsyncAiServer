@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const loginUser = async (req, res) => {
-  const { email, profileUrl, name } = req.body;
+  const { email, profile_url, name } = req.body;
 
   if (!email || !name) {
     return res.status(400).json({ error: 'Email and name are required.' });
@@ -17,7 +17,7 @@ const loginUser = async (req, res) => {
       user = new userInfo({
         email,
         name,
-        profile_url: profileUrl,
+        profile_url,
         points: 0,
       });
       await user.save();
