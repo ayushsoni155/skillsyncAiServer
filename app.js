@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
 function keepServerAwake() {
   setInterval(async () => {
     try {
-      const res = await fetch("https://minor2-backend.onrender.com"); // Replace with your Render URL
+      const res = await fetch("https://skillsyncaiserver.onrender.com/"); // Replace with your Render URL
       console.log("Pinged self to prevent sleep");
     } catch (err) {
       console.error("Ping failed:", err.message);
