@@ -19,7 +19,7 @@ services:
       start_period: 10s
 
   skillserver:
-    image: ayushsoni155/skill
+    image: ayushsoni155/skillserver
     container_name: skillserver
     depends_on:
       db:
