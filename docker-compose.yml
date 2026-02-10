@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - mongo_to_express
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: adminuser
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword    
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "mongodb://adminuser:adminpassword@localhost:27017/admin", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  skillserver:
+    image: ayushsoni155/skill
+    container_name: skillserver
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    networks:
+      - mongo_to_express
+    environment:
+      MONGODB_URI: "mongodb://adminuser:adminpassword@db:27017/test?authSource=admin"
+      JWT_SECRET: "@@@@1234"
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
+
+networks:
+  mongo_to_express:
+    driver: bridge
+
