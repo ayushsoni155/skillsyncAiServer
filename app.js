@@ -25,7 +25,10 @@ app.use('/api/quiz', quizRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/interview', interviewRoutes);
-
+app.get('/test',(req,res)=>{
+  console.log("Everything is working fine!");
+  res.send("Everything is working fine!");
+})
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
   res.status(500).json({ error: err.message || 'Server error' });
@@ -47,3 +50,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
+
