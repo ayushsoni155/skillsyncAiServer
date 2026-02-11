@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ayushsoni155/skillsyncAiServer.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                withCredentials([usernamePassword(
+                credentialsId:"dockerhubCreds",
+                passwordVariable:"dockerHPass",
+                usernameVariable:"dockerHUser")]){
+                sh "docker build -t ${env.dockerHUser}/skillserver ."
+                }
+            }
+        }
+        stage('Push to Dockerhub'){
+            steps{
+                withCredentials([usernamePassword(
+                credentialsId:"dockerhubCreds",
+                passwordVariable:"dockerHPass",
+                usernameVariable:"dockerHUser")]){
+                    sh "docker login -u ${env.dockerHUser} -p ${env.dockerHPass}"
+                    sh "docker push ${env.dockerHUser}/skillserver"
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker compose up -d --build'
+            }
+        }
+    }
+}
