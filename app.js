@@ -1,6 +1,6 @@
 const express = require("express");
 require('dotenv').config();
-const cors = require('cors'); // ✅ Add this
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const quizRoutes = require('./routes/quizRoutes');
@@ -11,7 +11,6 @@ require('./configs/db');
 
 const app = express();
 
-// ✅ Use CORS middleware
 app.use(cors({
   origin: process.env.CLIENT_URL || "http://localhost:5173", // allow frontend origin
   credentials: true // to allow cookies/auth headers
@@ -50,4 +49,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
+
 
