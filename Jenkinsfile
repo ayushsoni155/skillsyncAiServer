@@ -43,4 +43,23 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            script{
+                 emailext from: 'ayushsoni6997@gmail.com',
+                 to: 'agent47.6997@gmail.com',
+                 subject: "FAILED: Build ${env.JOB_NAME}", 
+                 body: "Build failed: ${env.JOB_NAME} (No. ${env.BUILD_NUMBER})"
+                }
+            }
+    
+        success {
+            script{
+                 emailext from: 'ayushsoni6997@gmail.com',
+                 to: 'agent47.6997@gmail.com',
+                 subject: "SUCCESSFUL: Build ${env.JOB_NAME}", 
+                 body: "Build Successful: ${env.JOB_NAME} (No. ${env.BUILD_NUMBER})"
+                }
+        }
+    }
 }
