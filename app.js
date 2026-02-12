@@ -24,6 +24,9 @@ app.use('/api/quiz', quizRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/interview', interviewRoutes);
+
+
+
 app.get('/test',(req,res)=>{
   console.log("Everything is working fine! done with cicd pipline");
   res.send("Everything is working fine! done pipline");
@@ -49,6 +52,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
+
 
 
 
