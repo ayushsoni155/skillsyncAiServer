@@ -23,7 +23,7 @@ pipeline {
         
         stage('File Analysis') {
             steps {
-                sh "trivy fs . -f json -o fileAnalysis.json"
+                sh "trivy fs . > fileAnalysis.txt"
             }
         }
         
